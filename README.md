@@ -8,6 +8,13 @@ Introduction sentence goes here.
 
 ### ELT Overview
 
+DAG tasks, in order of execution:
+1. Data is extracted from the U.S. Department of Education [College Scorecard API](https://collegescorecard.ed.gov/data/documentation/).
+2. Raw `JSON` file is uploaded to Amazon S3 bucket.
+3. Data is processed with `pandas` and serialized to `csv`.
+4. Cleaned `csv` is uploaded to Amazon S3 bucket.
+5. Clean data is loaded into Amazon Redshift data warehouse.
+
 ### Project folder structure
 
 ```
