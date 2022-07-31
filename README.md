@@ -12,16 +12,18 @@ Introduction sentence goes here.
 
 ```
 ├── LICENSE
-├── README.md            <- Top-level README file
+├── README.md                <- Top-level README file
+├── docker-compose.yaml      <- Compose file 
 ├── dags
-│   ├── dag.py           <- Main Airflow DAG
-│   └── dag_functions    <- Functions used in DAG
+│   ├── dag.py               <- Main Airflow DAG
+│   └── dag_functions        <- Functions used in DAG
 │       ├── extract.py
 │       └── transform.py
 ├── data
-│   ├── raw            <- Raw data pull from College Scorecard API
-│   ├── clean          <- Processed data in CSV format
-│   └── xwalks         <- Variable crosswalks
+│   ├── raw                  <- Raw data pull from College Scorecard API
+│   ├── clean                <- Processed data in CSV format
+│   └── xwalks               <- Variable crosswalks
+└── dashboard.py             <- Plotly dashboard app
 ```
 
 ## How to run
