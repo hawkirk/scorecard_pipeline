@@ -12,10 +12,15 @@ Introduction sentence goes here.
 
 ```
 ├── LICENSE
-├── README.md          <- Top-level README file
+├── README.md            <- Top-level README file
+├── dags
+│   ├── dag.py           <- Main Airflow DAG
+│   └── dag_functions    <- Functions used in DAG
+│       ├── extract.py
+│       └── transform.py
 ├── data
 │   ├── raw            <- Raw data pull from College Scorecard API
-|   ├── clean          <- Processed data in CSV format
+│   ├── clean          <- Processed data in CSV format
 │   └── xwalks         <- Variable crosswalks
 ```
 
