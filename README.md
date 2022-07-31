@@ -10,14 +10,14 @@ Introduction sentence goes here.
 
 ### Project folder structure
 
-------------
+```
 ├── LICENSE
 ├── README.md          <- Top-level README file
 ├── data
 │   ├── raw            <- Raw data pull from College Scorecard API
 |   ├── clean          <- Processed data in CSV format
 │   └── xwalks         <- Variable crosswalks
-------------
+```
 
 ## How to run
 
