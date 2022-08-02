@@ -1,2 +1,5 @@
 .env
+dags/__pycache__
+dags/dag_functions/__pycache__
+logs
 tmp
