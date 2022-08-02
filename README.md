@@ -4,6 +4,17 @@
 
 ![github_cover](https://user-images.githubusercontent.com/44434691/182048007-cda399cc-57c9-4779-b6d4-da21bf3d3086.jpeg)
 
+## Table of Contents
+- [Architecture](#architecture)
+  * [ELT Overview](#elt-overview)
+  * [Project folder structure](#project-folder-structure)
+- [How to Run](#how-to-run)
+- [Analysis](#analysis)
+- [Reflection](#reflection)
+  * [Limitations](#limitations)
+  * [Next Steps](#next-steps)
+- [Contributions and References](#contributions-and-references)
+
 ## Architecture
 ![scorecard_pipeline_architecture](https://user-images.githubusercontent.com/44434691/182258424-4c132bee-faeb-490f-bddb-93809dacd2eb.jpg)
 
@@ -20,24 +31,31 @@ DAG tasks, in order of execution:
 
 ```
 ├── LICENSE
-├── README.md                <- Top-level README file
-├── docker-compose.yaml      <- Compose file 
+├── README.md                <- top-level README file
+├── docker-compose.yaml      <- compose file
+├── Dockerfile               <- Docker requirements extension
 ├── dags
-│   ├── dag.py               <- Main Airflow DAG
-│   └── dag_functions        <- Functions used in DAG
-│       ├── extract.py
-│       └── transform.py
+│   ├── dag.py               <- Airflow DAG
+│   └── dag_functions        
+│       ├── extract.py       <- API extraction function
+│       └── transform.py     <- data processing/cleaning function
+├── db_build
+│   ├── create_tables.SQL    <- create table shells
+│   └── create_views.SQL     <- create table views
 ├── data
-│   ├── raw                  <- Raw data pull from College Scorecard API
-│   ├── clean                <- Processed data in CSV format
-│   └── xwalks               <- Variable crosswalks
-└── dashboard.py             <- Plotly dashboard app
+│   ├── raw                  <- raw data pull from College Scorecard API
+│   ├── clean                <- processed data in CSV format
+│   └── xwalks               <- variable crosswalks
+└── dashboard.py             <- plotly dashboard app
 ```
 
-## How to run
+## How to Run
 
 ## Analysis
 
 ## Reflection
 
-## References
+### Limitations
+### Next Steps
+
+## Contributions and References
