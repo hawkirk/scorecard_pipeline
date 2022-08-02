@@ -3,6 +3,7 @@ from airflow.operators.python import PythonOperator
 from dag_functions.extract import extract_scorecard
 from dag_functions.transform import transform_scorecard
 from dotenv import load_dotenv
+from datetime import datetime
 import time
 import boto3
 import json
@@ -83,7 +84,7 @@ default_args = {
 }
 
 with DAG(
-    'scorecard_dagv2',
+    'scorecard_dag',
     default_args=default_args,
     start_date=datetime(2022, 1, 1),
     schedule_interval="@once",
@@ -109,14 +110,14 @@ with DAG(
         python_callable=write_clean_csv
     )
 
+    # task 4: upload transformed .CSV to 'college-scorecard-clean' S3 Bucket
     t4 = PythonOperator(
         task_id="t4_upload_clean_s3",
         python_callable=upload_s3,
         op_args='college-scorecard-clean'
     )
 
-    # t5: upload transformed data (CSV) to 'college-scorecard-clean' S3 Bucket
-    # t6: load data to Postgres warehouse
+    # task 5: load data to Redshift
 
     # dag flow
     t1 >> t2 >> t3 >> t4
