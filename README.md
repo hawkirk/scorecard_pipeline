@@ -6,7 +6,7 @@
 
 ## Table of Contents
 - [Architecture](#architecture)
-  * [ELT Overview](#elt-overview)
+  * [ETL Overview](#etl-overview)
   * [Project folder structure](#project-folder-structure)
 - [How to Run](#how-to-run)
 - [Analysis](#analysis)
