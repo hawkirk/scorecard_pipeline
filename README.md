@@ -1,6 +1,6 @@
 # College Scorecard Data Pipeline [WIP]
 
-**scorecard_pipeline** is an end-to-end data pipeline following an ETL process.
+**scorecard_pipeline** is an end-to-end data pipeline following an ETL process. This project is a work in progress.
 
 ![github_cover](https://user-images.githubusercontent.com/44434691/182048007-cda399cc-57c9-4779-b6d4-da21bf3d3086.jpeg)
 
@@ -18,7 +18,7 @@
 ## Architecture
 ![scorecard_pipeline_architecture](https://user-images.githubusercontent.com/44434691/182258424-4c132bee-faeb-490f-bddb-93809dacd2eb.jpg)
 
-### ELT Overview
+### ETL Overview
 
 DAG tasks, in order of execution:
 1. Data is extracted from the U.S. Department of Education [College Scorecard API](https://collegescorecard.ed.gov/data/documentation/).
@@ -44,8 +44,7 @@ DAG tasks, in order of execution:
 │   └── create_views.SQL     <- create table views
 ├── data
 │   ├── raw                  <- raw data pull from College Scorecard API
-│   ├── clean                <- processed data in CSV format
-│   └── xwalks               <- variable crosswalks
+│   └── clean                <- processed data in CSV format
 └── dashboard.py             <- plotly dashboard app
 ```
 
@@ -58,4 +57,4 @@ DAG tasks, in order of execution:
 ### Limitations
 ### Next Steps
 
-## Contributions and References
+## References
