@@ -1,5 +1,6 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.providers.amazon.aws.transfers.s3_to_redshift import S3ToRedshiftOperator
 from dag_functions.extract import extract_scorecard
 from dag_functions.transform import transform_scorecard
 from dotenv import load_dotenv
@@ -9,6 +10,10 @@ import glob
 import boto3
 import json
 import os
+
+###################
+### init global ###
+###################
 
 # top-level project directory
 proj_dir=os.getcwd()
@@ -23,6 +28,10 @@ clean_file_name = 'clean_scorecard_' + timestamp + '.csv'
 # specify output paths with timestamp in filename
 raw_output_path = proj_dir + '/data/raw/' + raw_file_name
 clean_output_path = proj_dir + '/data/clean/' + clean_file_name
+
+######################
+### task functions ###
+######################
 
 # wrapper to serialize extract_scorecard function output
 def download_api(ti):
@@ -73,22 +82,9 @@ def upload_clean_s3():
     s3_client = boto3.client('s3', aws_access_key_id = "", aws_secret_access_key = "")
     s3_client.upload_file(latest_clean, 'college-scorecard-clean', clean_file_name)
 
-# test call the functions
-# download_api()
-
-# upload_s3(
-#     file_name=raw_output_path,
-#     bucket='college-scorecard-raw',
-#     object_name=raw_file_name)
-
-# write_clean_csv()
-
-# upload_s3(
-#     file_name=clean_output_path,
-#     bucket='college-scorecard-clean',
-#     object_name=clean_file_name)
-
-#### dag ----------------------------------------------------------------------
+###########
+### dag ###
+###########
 
 default_args = {
     'owner': 'airflow',
@@ -96,7 +92,7 @@ default_args = {
 }
 
 with DAG(
-    'scorecard_dag_39',
+    'scorecard_dag',
     default_args=default_args,
     start_date=datetime(2022, 1, 1),
     schedule_interval="@once",
@@ -110,7 +106,7 @@ with DAG(
         op_kwargs={'year': '2020', 'API_KEY': ''}
     )
 
-    # task 2: persist output to disk
+    # task 2: serialize JSONL output
     t2 = PythonOperator(
         task_id='t2_serialize_output',
         python_callable=download_api
@@ -134,7 +130,15 @@ with DAG(
         python_callable=upload_clean_s3
     )
 
-    # task 6: load data to Redshift
+    # # task 6: load data to Redshift
+    # t6 = S3ToRedshiftOperator(
+    #     task_id='t6_tranfer_s3_to_redshift',
+    #     schema='scorecard',
+    #     table=DIM_INST,
+    #     s3_bucket='college-scorecard-clean',
+    #     s3_key='',
+    #     copy_options=['csv']
+    # )
 
     # dag flow
     t1 >> t2 >> t3 >> t4 >> t5
