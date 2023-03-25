@@ -1,4 +1,4 @@
-# College Scorecard Data Pipeline [WIP]
+# College Scorecard Data Pipeline
 
 Data pipeline for analysis of postsecondary education data. Data sourced from the College Scorecard API, Python-based ETL process orchestrated with Airflow.
 
@@ -26,12 +26,12 @@ This project seeks to use publicly available postsecondary education data from t
 ### ETL Overview
 
 DAG tasks, in order of execution:
-1. [x] Extract data from the U.S. Department of Education College Scorecard API
-2. [x] Serialize data as `JSON` to `/data/raw/` in project directory
-3. [x] Upload raw file to AWS S3 raw bucket
-4. [x] Transform data with `pandas`, serialize cleaned `CSV` file to `/data/clean/`
-5. [x] Upload clean file to AWS S3 clean bucket
-5. [ ] Clean data is loaded into AWS RDS instance (*still under development as of 07/31/22*)
+1. Extract data from the U.S. Department of Education College Scorecard API
+2. Serialize data as `JSON` to `/data/raw/` in project directory
+3. Upload raw file to AWS S3 raw bucket
+4. Transform data with `pandas`, serialize cleaned `CSV` file to `/data/clean/`
+5. Upload clean file to AWS S3 clean bucket
+5. Clean data is loaded into AWS RDS instance
 
 Airflow DAG graph:
 ![airflow_dag](https://user-images.githubusercontent.com/44434691/183805367-e733869c-a36b-4e75-81a5-4d2f52468dc2.png)
@@ -59,7 +59,7 @@ Airflow DAG graph:
 
 ## Project Setup
 
-**08/09/22**: Project is still a work in progress and potentially unstable, so running is not advised. Some preliminary instructions about Docker and Airflow configuration are provided below. Eventually I'd like to make this whole thing `pip` installable, but for now some manual setup is required.
+> *⚠️ Note: This project is no longer maintained and potentially unstable, so running is not advised at this time. Some preliminary instructions about Docker and Airflow configuration are provided below.*
 
 In order to execute the DAG, you’ll need to store some information in a `.ENV` file in the top-level project directory. **You must add `.ENV` to project `.gitignore` file before publishing anything to GitHub!**
 
@@ -90,8 +90,6 @@ Execute `docker-compose down --volumes --rmi all` to stop and delete all running
 
 ## References
 
-Major shout-out to [Amanda Jayapurna](https://www.amandajayapurna.com/) for designing the [cover image](https://user-images.githubusercontent.com/44434691/182048007-cda399cc-57c9-4779-b6d4-da21bf3d3086.jpeg) for this project!
-
 Docs:
 - [College Scorecard Data Documentation](https://collegescorecard.ed.gov/data/documentation/)
 - [Apache Airflow Documentation](https://airflow.apache.org/docs/)
@@ -107,3 +105,5 @@ Architecture inspo:
 - [Rust Cheaters Data Pipeline](https://github.com/jacob1421/RustCheatersDataPipeline)
 - [Surfline Dashboard](https://github.com/andrem8/surf_dash)
 - [GoodReads Data Pipeline](https://github.com/san089/goodreads_etl_pipeline)
+
+Major shout-out to [Amanda Jayapurna](https://www.amandajayapurna.com/) for designing the [cover image](https://user-images.githubusercontent.com/44434691/182048007-cda399cc-57c9-4779-b6d4-da21bf3d3086.jpeg)!
